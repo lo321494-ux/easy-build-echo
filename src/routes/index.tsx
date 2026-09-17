@@ -391,7 +391,7 @@ function Testimonials() {
           </button>
           <div className="surface-card w-full max-w-xs overflow-hidden p-2">
             <img
-              src={testimonials[index].url}
+              src={testimonials[index]?.url}
               alt="Mensaje de una clienta compartiendo su experiencia con los escenarios"
               className="w-full rounded-2xl"
               loading="lazy"
