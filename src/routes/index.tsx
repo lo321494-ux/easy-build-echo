@@ -18,27 +18,77 @@ import bono4 from "@/assets/bono4.jpg.asset.json";
 import heroReference from "@/assets/hero-reference.png.asset.json";
 
 const CHECKOUT = "https://pay.hotmart.com/V107267658F?checkoutMode=10";
+const SITE_URL = "https://easy-build-echo.lovable.app/";
+
+const productSchema = {
+  "@context": "https://schema.org",
+  "@type": "Product",
+  name: "Escenarios Bíblicos 3D para Niños",
+  description:
+    "Colección digital de escenarios bíblicos 3D para imprimir, recortar y armar con niños.",
+  brand: {
+    "@type": "Brand",
+    name: "Escenarios Bíblicos 3D",
+  },
+  offers: {
+    "@type": "AggregateOffer",
+    url: SITE_URL,
+    priceCurrency: "USD",
+    lowPrice: "4.99",
+    highPrice: "9.99",
+    offerCount: "2",
+    availability: "https://schema.org/InStock",
+  },
+};
+
+const getFaqSchema = () => ({
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqs.map((faq) => ({
+    "@type": "Question",
+    name: faq.q.replace(/[“”]/g, ""),
+    acceptedAnswer: {
+      "@type": "Answer",
+      text: faq.a,
+    },
+  })),
+});
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Escenarios Bíblicos 3D para Niños | 121 creativos para imprimir y armar" },
+      { title: "Escenarios Bíblicos 3D para Niños | Imprime y Arma" },
       {
         name: "description",
         content:
-          "Escenarios bíblicos 3D estilo videojuego para niños: imprime, recorta y arma. 30 creativos en el plan Básico y 121 en el Premium, con libro para colorear de 71 páginas y más bonos de regalo.",
+          "Escenarios bíblicos 3D para niños listos para imprimir, recortar y armar. Elige 30 o 121 creativos y enseña la Biblia jugando.",
       },
+      { name: "robots", content: "index, follow, max-image-preview:large" },
       {
         property: "og:title",
-        content: "Escenarios Bíblicos 3D para Niños: imprime, recorta y juega",
+        content: "Escenarios Bíblicos 3D para Niños | Imprime y Arma",
       },
       {
         property: "og:description",
         content:
           "Convierte una hoja de papel en un mundo bíblico 3D para niños. 121 creativos, libro para colorear de 71 páginas y súper bonos de regalo.",
       },
+      { property: "og:url", content: SITE_URL },
+      { property: "og:locale", content: "es_ES" },
+      { property: "og:site_name", content: "Escenarios Bíblicos 3D" },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
+    ],
+    links: [{ rel: "canonical", href: SITE_URL }],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify(productSchema),
+      },
+      {
+        type: "application/ld+json",
+        children: JSON.stringify(getFaqSchema()),
+      },
     ],
   }),
   component: Landing,
