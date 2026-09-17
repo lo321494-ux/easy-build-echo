@@ -134,7 +134,7 @@
 .ticker-track {
   display: flex;
   width: max-content;
-  animation: ticker-slide 28s linear infinite;
+  animation: ticker-slide 42s linear infinite;
 }
 
 .marquee-track {
