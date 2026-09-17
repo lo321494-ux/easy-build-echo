@@ -15,6 +15,7 @@ import bono1 from "@/assets/bono1.jpg.asset.json";
 import bono2 from "@/assets/bono2.webp.asset.json";
 import bono3 from "@/assets/bono3.webp.asset.json";
 import bono4 from "@/assets/bono4.jpg.asset.json";
+import heroReference from "@/assets/hero-reference.png.asset.json";
 
 const CHECKOUT = "https://pay.hotmart.com/V107267658F?checkoutMode=10";
 
@@ -255,9 +256,9 @@ function Hero() {
         <div className="relative">
           <div className="absolute -inset-6 rounded-[2.5rem] bg-gold/20 blur-2xl" />
           <img
-            src={img05.url}
+            src={heroReference.url}
             alt="Escenarios bíblicos 3D armados sobre una mesa en un salón de clases"
-            className="relative aspect-video w-full rounded-2xl object-cover shadow-card sm:rounded-3xl"
+            className="relative aspect-square w-full rounded-2xl object-cover shadow-card sm:rounded-3xl"
             loading="eager"
           />
         </div>
