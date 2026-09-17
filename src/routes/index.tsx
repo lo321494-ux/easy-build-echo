@@ -41,7 +41,7 @@ const productSchema = {
   },
 };
 
-const faqSchema = {
+const getFaqSchema = () => ({
   "@context": "https://schema.org",
   "@type": "FAQPage",
   mainEntity: faqs.map((faq) => ({
@@ -52,7 +52,7 @@ const faqSchema = {
       text: faq.a,
     },
   })),
-};
+});
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -87,7 +87,7 @@ export const Route = createFileRoute("/")({
       },
       {
         type: "application/ld+json",
-        children: JSON.stringify(faqSchema),
+        children: JSON.stringify(getFaqSchema()),
       },
     ],
   }),
