@@ -148,6 +148,17 @@
   animation-play-state: paused;
 }
 
+.gallery-scroll {
+  scrollbar-width: none;
+  overscroll-behavior-x: contain;
+  touch-action: pan-x;
+  -webkit-overflow-scrolling: touch;
+}
+
+.gallery-scroll::-webkit-scrollbar {
+  display: none;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .ticker-track,
   .marquee-track {
