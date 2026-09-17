@@ -227,7 +227,6 @@ function Landing() {
       <Testimonials />
       <Bonuses />
       <Pricing />
-      <PurchaseTrust />
       <Faq />
       <FinalCta />
       <footer className="bg-navy-deep py-8 text-center text-sm text-white/60">
@@ -311,10 +310,6 @@ function Hero() {
             alt="Escenarios bíblicos 3D armados sobre una mesa en un salón de clases"
             className="relative aspect-square w-full rounded-2xl object-cover shadow-card sm:rounded-3xl"
             loading="eager"
-            fetchPriority="high"
-            decoding="async"
-            width={1080}
-            height={1080}
           />
         </div>
       </div>
@@ -351,9 +346,6 @@ function Marquee() {
               alt={`Escenario bíblico 3D impreso y armado ${i + 1}`}
               className="aspect-video w-[82vw] max-w-xl shrink-0 snap-center rounded-xl object-cover shadow-card sm:w-[62vw] sm:rounded-2xl lg:w-[42vw]"
               loading="lazy"
-              decoding="async"
-              width={1920}
-              height={1080}
               draggable={false}
             />
           ))}
@@ -486,9 +478,6 @@ function Testimonials() {
               alt="Mensaje de una clienta compartiendo su experiencia con los escenarios"
               className="w-full rounded-2xl"
               loading="lazy"
-              decoding="async"
-              width={1080}
-              height={1920}
             />
           </div>
           <button
@@ -540,9 +529,6 @@ function Bonuses() {
                 alt={bonus.title}
                 className="h-44 w-full rounded-2xl object-cover"
                 loading="lazy"
-                decoding="async"
-                width={960}
-                height={640}
               />
               <div className="mt-4 flex items-center gap-3">
                 <span className="rounded-full bg-gold px-3 py-1 text-xs font-bold text-accent-foreground">
@@ -639,34 +625,6 @@ function Pricing() {
           materiales con frecuencia en clases, cultos infantiles, escuela dominical o catequesis, el
           plan Premium te da 121 creativos y todos los bonos para trabajar todo el año.
         </p>
-      </div>
-    </section>
-  );
-}
-
-function PurchaseTrust() {
-  return (
-    <section className="section-navy px-4 py-14 sm:py-16">
-      <div className="mx-auto max-w-5xl text-center">
-        <p className="text-xs font-bold tracking-[0.2em] text-gold">COMPRA CON TRANQUILIDAD</p>
-        <h2 className="mt-2 text-3xl text-white sm:text-4xl">Puedes comprar sin miedo</h2>
-        <p className="mx-auto mt-4 max-w-2xl text-sm text-white/80 sm:text-base">
-          El pago se procesa de forma segura y, después de la confirmación, recibes acceso inmediato
-          al material digital para descargarlo y usarlo cuando quieras.
-        </p>
-        <div className="mt-8 grid gap-4 text-left sm:grid-cols-3">
-          {[
-            { icon: "🔒", title: "Pago seguro", text: "Compra protegida mediante la plataforma de pago." },
-            { icon: "⚡", title: "Acceso inmediato", text: "Recibe los archivos al confirmarse tu compra." },
-            { icon: "♾️", title: "Acceso de por vida", text: "Descarga e imprime los materiales cuando los necesites." },
-          ].map((item) => (
-            <div key={item.title} className="rounded-2xl bg-white/10 p-5">
-              <span className="text-2xl" aria-hidden="true">{item.icon}</span>
-              <h3 className="mt-3 text-lg text-white">{item.title}</h3>
-              <p className="mt-2 text-sm text-white/70">{item.text}</p>
-            </div>
-          ))}
-        </div>
       </div>
     </section>
   );
