@@ -151,8 +151,10 @@
 .gallery-scroll {
   scrollbar-width: none;
   overscroll-behavior-x: contain;
-  touch-action: pan-x;
+  touch-action: pan-y pinch-zoom;
   -webkit-overflow-scrolling: touch;
+  user-select: none;
+  -webkit-user-select: none;
 }
 
 .gallery-scroll::-webkit-scrollbar {
