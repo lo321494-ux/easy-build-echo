@@ -344,7 +344,7 @@ function Marquee() {
               key={image.url}
               src={image.url}
               alt={`Escenario bíblico 3D impreso y armado ${i + 1}`}
-              className="aspect-video w-[82vw] max-w-xl shrink-0 snap-center rounded-xl object-cover shadow-card sm:w-[62vw] sm:rounded-2xl lg:w-[42vw]"
+              className="h-auto w-[82vw] max-w-xl shrink-0 snap-center rounded-xl object-contain shadow-card sm:w-[62vw] sm:rounded-2xl lg:w-[42vw]"
               loading="lazy"
               draggable={false}
             />
