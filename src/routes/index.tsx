@@ -476,19 +476,32 @@ function Pricing() {
             <p className="mt-1 text-sm text-muted-foreground">30 creativos 3D bíblicos</p>
             <ul className="mt-5 space-y-2 text-sm">
               {[
-                "30 creativos 3D bíblicos",
-                "Archivos digitales listos para imprimir",
-                "Material fácil de armar",
-                "Acceso inmediato después de la compra",
+                { text: "30 creativos 3D bíblicos", included: true },
+                { text: "Archivos listos para imprimir", included: true },
+                { text: "Material fácil de armar", included: true },
+                { text: "Súper Bono Devocional Diario", included: false },
+                { text: "Súper Bono Guías de Estudio Profundo", included: false },
+                { text: "Súper Bono Herramientas Visuales Bíblicas", included: false },
+                { text: "Libro Bíblico para Colorear de 71 páginas", included: false },
+                { text: "Prioridad en el soporte", included: false },
+                { text: "Acceso inmediato después de la compra", included: true },
               ].map((item) => (
-                <li key={item} className="flex gap-2">
-                  <span className="text-accent">✓</span>
-                  {item}
+                <li
+                  key={item.text}
+                  className={
+                    item.included ? "flex gap-2" : "flex gap-2 text-muted-foreground line-through"
+                  }
+                >
+                  <span className={item.included ? "text-accent" : "no-underline"}>
+                    {item.included ? "✓" : "✕"}
+                  </span>
+                  {item.text}
                 </li>
               ))}
             </ul>
             <p className="mt-6 text-sm text-muted-foreground">Solo</p>
             <p className="font-display text-4xl">US$ 3,00</p>
+
             <a href={CHECKOUT} className="btn-cta mt-6 text-sm">
               Quiero el plan Básico
             </a>
