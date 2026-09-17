@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { type PointerEvent as ReactPointerEvent, useRef, useState } from "react";
+import { useRef, useState } from "react";
 
 import img00 from "@/assets/img-00.png.asset.json";
 import img01 from "@/assets/img-01.png.asset.json";
@@ -319,41 +319,12 @@ function Hero() {
 
 function Marquee() {
   const galleryRef = useRef<HTMLDivElement>(null);
-  const dragRef = useRef({ active: false, startX: 0, scrollLeft: 0 });
 
   const moveGallery = (direction: number) => {
     galleryRef.current?.scrollBy({
       left: direction * Math.min(galleryRef.current.clientWidth * 0.8, 520),
       behavior: "smooth",
     });
-  };
-
-  const startDrag = (event: ReactPointerEvent<HTMLDivElement>) => {
-    const galleryElement = galleryRef.current;
-    if (!galleryElement) return;
-
-    dragRef.current = {
-      active: true,
-      startX: event.clientX,
-      scrollLeft: galleryElement.scrollLeft,
-    };
-    galleryElement.setPointerCapture(event.pointerId);
-  };
-
-  const dragGallery = (event: ReactPointerEvent<HTMLDivElement>) => {
-    const galleryElement = galleryRef.current;
-    if (!galleryElement || !dragRef.current.active) return;
-
-    galleryElement.scrollLeft =
-      dragRef.current.scrollLeft - (event.clientX - dragRef.current.startX);
-  };
-
-  const stopDrag = (event: ReactPointerEvent<HTMLDivElement>) => {
-    const galleryElement = galleryRef.current;
-    dragRef.current.active = false;
-    if (galleryElement?.hasPointerCapture(event.pointerId)) {
-      galleryElement.releasePointerCapture(event.pointerId);
-    }
   };
 
   return (
@@ -366,12 +337,7 @@ function Marquee() {
       <div className="relative mx-auto max-w-7xl">
         <div
           ref={galleryRef}
-          onPointerDown={startDrag}
-          onPointerMove={dragGallery}
-          onPointerUp={stopDrag}
-          onPointerCancel={stopDrag}
-          onPointerLeave={stopDrag}
-          className="gallery-scroll flex cursor-grab snap-x snap-proximity gap-4 overflow-x-auto px-4 pb-5 active:cursor-grabbing sm:gap-5"
+          className="gallery-scroll flex snap-x snap-proximity gap-4 overflow-x-scroll px-4 pb-5 sm:gap-5"
         >
           {gallery.map((image, i) => (
             <img
