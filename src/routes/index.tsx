@@ -208,15 +208,16 @@ function Ticker() {
 function Header() {
   return (
     <header className="sticky top-0 z-50 bg-navy/95 backdrop-blur">
-      <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3">
-        <div className="flex items-center gap-2">
-          <span className="grid size-8 place-items-center rounded-lg bg-gold text-base">⭐</span>
-          <span className="font-display text-base font-bold text-white sm:text-lg">
+      <div className="mx-auto flex max-w-6xl items-center justify-between gap-3 px-4 py-3">
+        <div className="flex min-w-0 items-center gap-2">
+          <span className="grid size-8 shrink-0 place-items-center rounded-lg bg-gold text-base">⭐</span>
+          <span className="truncate font-display text-sm font-bold text-white sm:text-lg">
             Escenarios Bíblicos 3D
           </span>
         </div>
-        <a href={CHECKOUT} className="btn-cta px-5 py-2.5 text-xs sm:text-sm">
-          Lo quiero ahora
+        <a href={CHECKOUT} className="btn-cta shrink-0 px-4 py-2.5 text-[11px] sm:px-5 sm:text-sm">
+          <span className="sm:hidden">Comprar</span>
+          <span className="hidden sm:inline">Lo quiero ahora</span>
         </a>
       </div>
     </header>
@@ -225,17 +226,17 @@ function Header() {
 
 function Hero() {
   return (
-    <section className="section-navy relative overflow-hidden px-4 py-14 sm:py-20">
-      <div className="mx-auto grid max-w-6xl items-center gap-10 lg:grid-cols-2">
-        <div>
-          <span className="inline-flex rounded-full bg-white/10 px-4 py-1.5 text-xs font-semibold text-gold-soft">
+    <section className="section-navy relative overflow-hidden px-4 py-10 sm:py-20">
+      <div className="mx-auto grid max-w-6xl items-center gap-8 lg:grid-cols-2 lg:gap-10">
+        <div className="text-center lg:text-left">
+          <span className="inline-flex rounded-full bg-white/10 px-3 py-1.5 text-[11px] font-semibold text-gold-soft sm:px-4 sm:text-xs">
             ⭐ Colección completa · 121 Creativos Bíblicos 3D
           </span>
-          <h1 className="mt-5 text-4xl leading-tight text-white sm:text-5xl lg:text-6xl">
+          <h1 className="mt-5 text-3xl leading-tight text-white sm:text-5xl lg:text-6xl">
             Convierte una hoja de papel en un{" "}
             <span className="text-gold">mundo bíblico 3D</span> que los niños aman
           </h1>
-          <p className="mt-5 max-w-xl text-base text-white/80 sm:text-lg">
+          <p className="mx-auto mt-5 max-w-xl text-base text-white/80 sm:text-lg lg:mx-0">
             Escenarios con colores de videojuego para imprimir, recortar y armar: la forma más
             divertida, simple y económica de enseñar la Biblia a los peques.
           </p>
@@ -243,11 +244,11 @@ function Hero() {
             🎮 ¡No tienes que diseñar nada, el trabajo creativo ya está hecho por ti!
           </p>
           <div className="mt-8">
-            <a href={CHECKOUT} className="btn-cta w-full text-sm sm:w-auto sm:text-base">
+            <a href={CHECKOUT} className="btn-cta w-full px-5 text-xs sm:w-auto sm:px-8 sm:text-base">
               Quiero darle vida a las historias bíblicas
             </a>
             <p className="mt-3 text-xs text-white/60">
-              Desde US$ 3,00 · Acceso inmediato después de la compra
+              Desde US$ 4,99 · Acceso inmediato después de la compra
             </p>
           </div>
         </div>
@@ -256,7 +257,7 @@ function Hero() {
           <img
             src={img05.url}
             alt="Escenarios bíblicos 3D armados sobre una mesa en un salón de clases"
-            className="relative w-full rounded-3xl shadow-card"
+            className="relative aspect-video w-full rounded-2xl object-cover shadow-card sm:rounded-3xl"
             loading="eager"
           />
         </div>
@@ -268,7 +269,7 @@ function Hero() {
 function Marquee() {
   const items = [...gallery, ...gallery];
   return (
-    <section className="overflow-hidden bg-background py-12">
+    <section className="overflow-hidden bg-background py-10 sm:py-12">
       <div className="mx-auto mb-6 max-w-6xl px-4 text-center">
         <p className="text-xs font-bold tracking-[0.2em] text-muted-foreground">LA COLECCIÓN</p>
         <h2 className="mt-2 text-3xl sm:text-4xl">Mira los escenarios en acción</h2>
@@ -279,7 +280,7 @@ function Marquee() {
             key={i}
             src={image.url}
             alt="Escenario bíblico 3D impreso y armado"
-            className="h-56 w-auto shrink-0 rounded-2xl object-cover shadow-card sm:h-72"
+            className="h-44 w-auto shrink-0 rounded-xl object-cover shadow-card sm:h-72 sm:rounded-2xl"
             loading="lazy"
           />
         ))}
@@ -326,14 +327,14 @@ function Solution() {
           mientras cuentas historias bíblicas. Colores vivos, personajes simpáticos y mundos que se
           arman en minutos.
         </p>
-        <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
+        <div className="mt-10 grid grid-cols-2 gap-3 sm:flex sm:flex-wrap sm:items-center sm:justify-center sm:gap-4">
           {steps.map((step, i) => (
-            <div key={step.label} className="flex items-center gap-4">
-              <div className="rounded-2xl bg-white/10 px-6 py-5">
+            <div key={step.label} className="flex items-center justify-center gap-4">
+              <div className="h-full w-full rounded-2xl bg-white/10 px-3 py-5 sm:w-auto sm:px-6">
                 <div className="text-3xl">{step.icon}</div>
                 <p className="mt-2 text-sm font-semibold text-white">{step.label}</p>
               </div>
-              {i < steps.length - 1 && <span className="text-gold">→</span>}
+              {i < steps.length - 1 && <span className="hidden text-gold sm:inline">→</span>}
             </div>
           ))}
         </div>
@@ -380,16 +381,16 @@ function Testimonials() {
         <h2 className="mt-2 text-3xl sm:text-4xl">
           Quien los usa nota la diferencia a la hora de contar la historia.
         </h2>
-        <div className="mt-10 flex items-center justify-center gap-3 sm:gap-6">
+        <div className="relative mx-auto mt-10 flex max-w-xs items-center justify-center sm:max-w-sm">
           <button
             type="button"
             aria-label="Testimonio anterior"
             onClick={() => go(-1)}
-            className="grid size-11 shrink-0 place-items-center rounded-full bg-card text-lg shadow-card transition hover:bg-secondary"
+            className="absolute left-2 z-10 grid size-10 shrink-0 place-items-center rounded-full bg-card/95 text-lg shadow-card transition hover:bg-secondary sm:-left-14 sm:size-11"
           >
             ‹
           </button>
-          <div className="surface-card w-full max-w-xs overflow-hidden p-2">
+          <div className="surface-card w-full overflow-hidden p-2">
             <img
               src={testimonials[index]?.url}
               alt="Mensaje de una clienta compartiendo su experiencia con los escenarios"
@@ -401,7 +402,7 @@ function Testimonials() {
             type="button"
             aria-label="Testimonio siguiente"
             onClick={() => go(1)}
-            className="grid size-11 shrink-0 place-items-center rounded-full bg-card text-lg shadow-card transition hover:bg-secondary"
+            className="absolute right-2 z-10 grid size-10 shrink-0 place-items-center rounded-full bg-card/95 text-lg shadow-card transition hover:bg-secondary sm:-right-14 sm:size-11"
           >
             ›
           </button>
@@ -466,7 +467,7 @@ function Bonuses() {
 
 function Pricing() {
   return (
-    <section className="px-4 py-16">
+    <section className="px-4 py-12 sm:py-16">
       <div className="mx-auto max-w-5xl text-center">
         <p className="text-xs font-bold tracking-[0.2em] text-muted-foreground">ELIGE TU PLAN</p>
         <h2 className="mt-2 text-3xl sm:text-4xl">Elige el plan que mejor va contigo</h2>
@@ -500,7 +501,7 @@ function Pricing() {
               ))}
             </ul>
             <p className="mt-6 text-sm text-muted-foreground">Solo</p>
-            <p className="font-display text-4xl">US$ 3,00</p>
+            <p className="font-display text-4xl">US$ 4,99</p>
 
             <a href={CHECKOUT} className="btn-cta mt-6 text-sm">
               Quiero el plan Básico
@@ -531,7 +532,7 @@ function Pricing() {
               ))}
             </ul>
             <p className="mt-6 text-sm text-white/70">Todo esto por solo</p>
-            <p className="font-display text-4xl text-gold">US$ 6,90</p>
+            <p className="font-display text-4xl text-gold">US$ 9,99</p>
             <a href={CHECKOUT} className="btn-cta mt-6 text-sm">
               Quiero el plan Premium
             </a>
@@ -574,7 +575,7 @@ function Faq() {
 
 function FinalCta() {
   return (
-    <section className="section-navy px-4 py-20 text-center">
+    <section className="section-navy px-4 py-14 text-center sm:py-20">
       <div className="mx-auto max-w-3xl">
         <h2 className="text-3xl text-white sm:text-5xl">
           Tus historias bíblicas pueden ser mucho más visuales.
@@ -584,11 +585,11 @@ function FinalCta() {
           necesitas gastar mucho.
         </p>
         <a href={CHECKOUT} className="btn-cta mt-8 text-sm sm:text-base">
-          Quiero los 121 creativos por US$ 6,90
+          Quiero los 121 creativos por US$ 9,99
         </a>
         <p className="mt-4 text-sm">
           <a href={CHECKOUT} className="text-gold-soft underline">
-            o empezar con 30 creativos por US$ 3,00
+            o empezar con 30 creativos por US$ 4,99
           </a>
         </p>
         <div className="mt-12 rounded-3xl bg-white/10 p-6 text-left text-sm text-white/80">
