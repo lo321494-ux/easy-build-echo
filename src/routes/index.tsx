@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useState } from "react";
+import { useRef, useState } from "react";
 
 import img00 from "@/assets/img-00.png.asset.json";
 import img01 from "@/assets/img-01.png.asset.json";
@@ -318,23 +318,54 @@ function Hero() {
 }
 
 function Marquee() {
-  const items = [...gallery, ...gallery];
+  const galleryRef = useRef<HTMLDivElement>(null);
+
+  const moveGallery = (direction: number) => {
+    galleryRef.current?.scrollBy({
+      left: direction * Math.min(galleryRef.current.clientWidth * 0.8, 520),
+      behavior: "smooth",
+    });
+  };
+
   return (
-    <section className="overflow-hidden bg-background py-10 sm:py-12">
+    <section className="bg-background py-10 sm:py-12">
       <div className="mx-auto mb-6 max-w-6xl px-4 text-center">
         <p className="text-xs font-bold tracking-[0.2em] text-muted-foreground">LA COLECCIÓN</p>
         <h2 className="mt-2 text-3xl sm:text-4xl">Mira los escenarios en acción</h2>
+        <p className="mt-2 text-sm text-muted-foreground">Desliza para explorar la colección</p>
       </div>
-      <div className="marquee-track">
-        {items.map((image, i) => (
-          <img
-            key={i}
-            src={image.url}
-            alt="Escenario bíblico 3D impreso y armado"
-            className="h-44 w-auto shrink-0 rounded-xl object-cover shadow-card sm:h-72 sm:rounded-2xl"
-            loading="lazy"
-          />
-        ))}
+      <div className="relative mx-auto max-w-7xl">
+        <div
+          ref={galleryRef}
+          className="gallery-scroll flex snap-x snap-mandatory gap-4 overflow-x-auto px-4 pb-5 sm:gap-5"
+        >
+          {gallery.map((image, i) => (
+            <img
+              key={image.url}
+              src={image.url}
+              alt={`Escenario bíblico 3D impreso y armado ${i + 1}`}
+              className="aspect-video w-[82vw] max-w-xl shrink-0 snap-center rounded-xl object-cover shadow-card sm:w-[62vw] sm:rounded-2xl lg:w-[42vw]"
+              loading="lazy"
+              draggable={false}
+            />
+          ))}
+        </div>
+        <button
+          type="button"
+          aria-label="Ver escenario anterior"
+          onClick={() => moveGallery(-1)}
+          className="absolute left-5 top-1/2 grid size-11 -translate-y-1/2 place-items-center rounded-full bg-card/95 text-2xl shadow-card transition hover:bg-secondary sm:left-8"
+        >
+          ‹
+        </button>
+        <button
+          type="button"
+          aria-label="Ver escenario siguiente"
+          onClick={() => moveGallery(1)}
+          className="absolute right-5 top-1/2 grid size-11 -translate-y-1/2 place-items-center rounded-full bg-card/95 text-2xl shadow-card transition hover:bg-secondary sm:right-8"
+        >
+          ›
+        </button>
       </div>
     </section>
   );
